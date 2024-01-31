@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_wizard/flutter_wizard.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/register-pinjol/views/register_pinjol_step1_view.dart';
 import 'package:mobile_app/resources/colors.dart';
@@ -14,6 +13,12 @@ class RegisterPinjolView extends StatefulWidget {
 
 class _RegisterPinjolViewState extends State<RegisterPinjolView> {
   final controller = Get.put(RegisterPinjolController());
+
+  @override
+  void initState() {
+    super.initState();
+    controller.init();
+  }
 
   @override
   Widget build(BuildContext context) {
