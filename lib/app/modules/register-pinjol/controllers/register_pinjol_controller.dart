@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/models/province.dart';
 import 'package:mobile_app/app/models/district.dart';
@@ -22,17 +23,72 @@ class RegisterPinjolController extends GetxController {
   final dataVillage = RxList<Village>([]);
   final listVillage = RxList<String>([]);
 
+  final firstName = TextEditingController();
+  final errorFirstName = false.obs;
+  final lastName = TextEditingController();
+  final errorLastName = false.obs;
+  final biodata = TextEditingController();
+  final errorBiodata = false.obs;
   String? selectedProvince;
+  final errorProvince = false.obs;
   String? selectedRegency;
+  final errorRegency = false.obs;
   String? selectedDistrict;
+  final errorDistrict = false.obs;
   String? selectedVillage;
+  final errorVillage = false.obs;
 
   int index = 0;
 
+  bool isValid() {
+    var isValid = true;
+    errorFirstName.value = false;
+    errorLastName.value = false;
+    errorBiodata.value = false;
+    errorProvince.value = false;
+    errorRegency.value = false;
+    errorDistrict.value = false;
+    errorVillage.value = false;
+
+    if (firstName.text == '') {
+      isValid = false;
+      errorFirstName.value = true;
+    }
+
+    if (lastName.text == '') {
+      isValid = false;
+      errorLastName.value = true;
+    }
+    if (biodata.text == '') {
+      isValid = false;
+      errorBiodata.value = true;
+    }
+    if (selectedProvince == null) {
+      isValid = false;
+      errorProvince.value = true;
+    }
+    if (selectedRegency == null) {
+      isValid = false;
+      errorRegency.value = true;
+    }
+    if (selectedDistrict == null) {
+      isValid = false;
+      errorDistrict.value = true;
+    }
+    if (selectedVillage == null) {
+      isValid = false;
+      errorVillage.value = true;
+    }
+
+    return isValid;
+  }
+
   void goContinue() {
-    if (index < 2) {
-      index += 1;
-      update();
+    if (isValid()) {
+      if (index < 2) {
+        index += 1;
+        update();
+      }
     }
   }
 

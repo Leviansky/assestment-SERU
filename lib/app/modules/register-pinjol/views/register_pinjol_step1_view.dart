@@ -1,7 +1,4 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
-
-import 'dart:ffi';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,72 +36,81 @@ class _RegisterStep1State extends State<RegisterStep1> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 35,
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    padding: const EdgeInsets.only(bottom: 5, left: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                      border: Border.all(
-                        width: 2.0,
-                        color: Colors.grey[300]!,
-                      ),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          isCollapsed: true,
-                          isDense: true,
-                          hintText: 'Nama Depan',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[500]!,
-                          ),
+                  Obx(
+                    () => Container(
+                      height: 35,
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      padding: const EdgeInsets.only(bottom: 5, left: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
                         ),
-                        onChanged: (value) {},
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[900]!,
+                        border: Border.all(
+                          width: 2.0,
+                          color: controller.errorFirstName.value
+                              ? AppColors.error
+                              : Colors.grey[300]!,
+                        ),
+                      ),
+                      child: Center(
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.center,
+                          controller: controller.firstName,
+                          decoration: InputDecoration(
+                            isCollapsed: true,
+                            isDense: true,
+                            hintText: 'Nama Depan',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[500]!,
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[900]!,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    height: 35,
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    padding: const EdgeInsets.only(bottom: 3, left: 5),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2.0,
-                        color: Colors.grey[300]!,
+                  Obx(
+                    () => Container(
+                      height: 35,
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      padding: const EdgeInsets.only(bottom: 3, left: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 2.0,
+                          color: controller.errorLastName.value
+                              ? AppColors.error
+                              : Colors.grey[300]!,
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          isCollapsed: true,
-                          isDense: true,
-                          hintText: 'Nama Belakang',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[500]!,
+                      child: Center(
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.center,
+                          controller: controller.lastName,
+                          decoration: InputDecoration(
+                            isCollapsed: true,
+                            isDense: true,
+                            hintText: 'Nama Belakang',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[500]!,
+                            ),
                           ),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[900]!,
+                          ),
+                          onChanged: (value) {},
                         ),
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[900]!,
-                        ),
-                        onChanged: (value) {},
                       ),
                     ),
                   ),
@@ -113,38 +119,43 @@ class _RegisterStep1State extends State<RegisterStep1> {
               const SizedBox(
                 height: 20.0,
               ),
-              Container(
-                height: 100,
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  border: Border.all(
-                    width: 2.0,
-                    color: Colors.grey[300]!,
-                  ),
-                ),
-                child: TextFormField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    isCollapsed: true,
-                    hintText: 'Biodata',
-                    border: InputBorder.none,
-                    hintStyle: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[500]!,
+              Obx(
+                () => Container(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                    border: Border.all(
+                      width: 2.0,
+                      color: controller.errorBiodata.value
+                          ? AppColors.error
+                          : Colors.grey[300]!,
                     ),
                   ),
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[900]!,
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    controller: controller.biodata,
+                    decoration: InputDecoration(
+                      isCollapsed: true,
+                      hintText: 'Biodata',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[500]!,
+                      ),
+                    ),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[900]!,
+                    ),
+                    maxLines: null,
+                    onChanged: (value) {},
                   ),
-                  maxLines: null,
-                  onChanged: (value) {},
                 ),
               ),
               const SizedBox(
@@ -161,7 +172,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorProvince.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: DropdownButtonHideUnderline(
@@ -235,7 +248,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorProvince.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: Align(
@@ -265,7 +280,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorRegency.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: DropdownButtonHideUnderline(
@@ -336,7 +353,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorRegency.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: Align(
@@ -366,7 +385,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorDistrict.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: DropdownButtonHideUnderline(
@@ -437,7 +458,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorDistrict.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: Align(
@@ -467,7 +490,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorVillage.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: DropdownButtonHideUnderline(
@@ -500,7 +525,6 @@ class _RegisterStep1State extends State<RegisterStep1> {
                             onChanged: (String? value) {
                               setState(() {
                                 controller.selectedVillage = value!;
-                                // controller.getDistrict(value!);
                               });
                             },
                             buttonStyleData: const ButtonStyleData(
@@ -538,7 +562,9 @@ class _RegisterStep1State extends State<RegisterStep1> {
                           ),
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.grey[300]!,
+                            color: controller.errorVillage.value
+                                ? AppColors.error
+                                : Colors.grey[300]!,
                           ),
                         ),
                         child: Align(
