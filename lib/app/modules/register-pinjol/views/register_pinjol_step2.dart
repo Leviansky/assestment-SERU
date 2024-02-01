@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dashed_line/dashed_line.dart';
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/register-pinjol/controllers/register_pinjol_controller.dart';
 import 'package:mobile_app/resources/colors.dart';
@@ -116,12 +117,15 @@ class _RegosterStep2State extends State<RegosterStep2> {
                       ),
                     ),
                     Positioned.fill(
-                      child: InteractiveViewer(
-                        maxScale: 2.5,
-                        minScale: 0.4,
-                        child: Image.file(
-                          File(controller.ktpImage.value?.path ?? ""),
-                          fit: BoxFit.cover,
+                      child: FullScreenWidget(
+                        disposeLevel: DisposeLevel.Low,
+                        child: InteractiveViewer(
+                          maxScale: 2.5,
+                          minScale: 0.4,
+                          child: Image.file(
+                            File(controller.ktpImage.value?.path ?? ""),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),
@@ -261,12 +265,15 @@ class _RegosterStep2State extends State<RegosterStep2> {
                       ),
                     ),
                     Positioned.fill(
-                      child: InteractiveViewer(
-                        maxScale: 2.5,
-                        minScale: 0.4,
-                        child: Image.file(
-                          File(controller.selfieImage.value?.path ?? ""),
-                          fit: BoxFit.cover,
+                      child: FullScreenWidget(
+                        disposeLevel: DisposeLevel.Low,
+                        child: InteractiveViewer(
+                          maxScale: 2.5,
+                          minScale: 0.4,
+                          child: Image.file(
+                            File(controller.selfieImage.value?.path ?? ""),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),

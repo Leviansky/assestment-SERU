@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -108,12 +106,12 @@ class RegisterPinjolController extends GetxController {
   }
 
   void goFoto() {
-    // if (isValidBiodata()) {
-    if (index < 2) {
-      index += 1;
-      update();
+    if (isValidBiodata()) {
+      if (index < 2) {
+        index += 1;
+        update();
+      }
     }
-    // }
   }
 
   void goResult() {
