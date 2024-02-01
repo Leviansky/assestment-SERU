@@ -10,8 +10,7 @@ kebutuhan keuangan sehari-hari tanpa ribet.
 
 ## User Interface
 
-![image](./screenshot/wizard1.jpeg) ![image](./screenshot/wizard2.jpeg)
-![image](./screenshot/wizard3.jpeg)
+[Pinjol App.webm](https://github.com/Leviansky/assestment-SERU/assets/101730990/df0c4855-4c37-45a7-b175-d271a03771d0)
 
 ## Package and API
 
