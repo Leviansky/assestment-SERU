@@ -600,7 +600,7 @@ class _RegisterStep1State extends State<RegisterStep1> {
               controller.goFoto();
             },
             child: const Text(
-              'NEXT',
+              'LANJUT',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 12,

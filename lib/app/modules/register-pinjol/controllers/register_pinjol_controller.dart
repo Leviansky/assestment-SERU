@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -38,6 +40,13 @@ class RegisterPinjolController extends GetxController {
   final errorRegency = false.obs;
   final errorDistrict = false.obs;
   final errorVillage = false.obs;
+
+  final resultName = ''.obs;
+  final resultBio = ''.obs;
+  final resultProvince = ''.obs;
+  final resultRegency = ''.obs;
+  final resultDistrict = ''.obs;
+  final resultVillage = ''.obs;
 
   Rx<XFile?> ktpImage = Rx<XFile?>(null);
   Rx<XFile?> selfieImage = Rx<XFile?>(null);
@@ -118,9 +127,31 @@ class RegisterPinjolController extends GetxController {
     if (isValidFoto()) {
       if (index < 2) {
         index += 1;
+        resultName.value = '${firstName.text} ${lastName.text}';
+        resultBio.value = biodata.text;
+        resultProvince.value = selectedProvince!;
+        resultRegency.value = selectedRegency!;
+        resultDistrict.value = selectedDistrict!;
+        resultVillage.value = selectedVillage!;
         update();
       }
     }
+  }
+
+  void sendData() async {
+    final response = await network.sendData(
+      firstName: firstName.text,
+      lastName: lastName.text,
+      province: selectedProvince!,
+      regency: selectedRegency!,
+      district: selectedDistrict!,
+      village: selectedVillage!,
+      ktp: ktpImage.value != null ? File(ktpImage.value!.path) : File('null'),
+      selfie: selfieImage.value != null
+          ? File(selfieImage.value!.path)
+          : File('null'),
+    );
+    print(response);
   }
 
   void goBack() {

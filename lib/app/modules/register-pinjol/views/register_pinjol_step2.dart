@@ -338,7 +338,7 @@ class _RegosterStep2State extends State<RegosterStep2> {
                   controller.goBack();
                 },
                 child: const Text(
-                  'BACK',
+                  'KEMBALI',
                   style: TextStyle(
                     color: AppColors.primary,
                     fontSize: 12,
@@ -362,7 +362,7 @@ class _RegosterStep2State extends State<RegosterStep2> {
                   controller.goResult();
                 },
                 child: const Text(
-                  'NEXT',
+                  'LANJUT',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,

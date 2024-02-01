@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/register-pinjol/views/register_pinjol_step1_view.dart';
 import 'package:mobile_app/app/modules/register-pinjol/views/register_pinjol_step2.dart';
+import 'package:mobile_app/app/modules/register-pinjol/views/register_pinjol_step3.dart';
 import 'package:mobile_app/resources/colors.dart';
 import '../controllers/register_pinjol_controller.dart';
 
@@ -95,7 +96,7 @@ class _RegisterPinjolViewState extends State<RegisterPinjolView> {
                                 : Colors.grey,
                           ),
                         ),
-                        content: const Text("Ini adalah langkah 3"),
+                        content: const RegisterStep3(),
                         isActive: controller.index == 2 || controller.index > 2
                             ? true
                             : false,
