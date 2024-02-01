@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile_app/app/models/province.dart';
 import 'package:mobile_app/app/models/district.dart';
 import 'package:mobile_app/app/models/regency.dart';
@@ -30,17 +33,22 @@ class RegisterPinjolController extends GetxController {
   final biodata = TextEditingController();
   final errorBiodata = false.obs;
   String? selectedProvince;
-  final errorProvince = false.obs;
   String? selectedRegency;
-  final errorRegency = false.obs;
   String? selectedDistrict;
-  final errorDistrict = false.obs;
   String? selectedVillage;
+  final errorProvince = false.obs;
+  final errorRegency = false.obs;
+  final errorDistrict = false.obs;
   final errorVillage = false.obs;
+
+  Rx<XFile?> ktpImage = Rx<XFile?>(null);
+  Rx<XFile?> selfieImage = Rx<XFile?>(null);
+  final errorKTP = false.obs;
+  final errorSelfie = false.obs;
 
   int index = 0;
 
-  bool isValid() {
+  bool isValidBiodata() {
     var isValid = true;
     errorFirstName.value = false;
     errorLastName.value = false;
@@ -54,7 +62,6 @@ class RegisterPinjolController extends GetxController {
       isValid = false;
       errorFirstName.value = true;
     }
-
     if (lastName.text == '') {
       isValid = false;
       errorLastName.value = true;
@@ -83,8 +90,34 @@ class RegisterPinjolController extends GetxController {
     return isValid;
   }
 
-  void goContinue() {
-    if (isValid()) {
+  bool isValidFoto() {
+    var isValid = true;
+    errorKTP.value = false;
+    errorSelfie.value = false;
+
+    if (ktpImage.value == null) {
+      isValid = false;
+      errorKTP.value = true;
+    }
+    if (selfieImage.value == null) {
+      isValid = false;
+      errorSelfie.value = true;
+    }
+
+    return isValid;
+  }
+
+  void goFoto() {
+    // if (isValidBiodata()) {
+    if (index < 2) {
+      index += 1;
+      update();
+    }
+    // }
+  }
+
+  void goResult() {
+    if (isValidFoto()) {
       if (index < 2) {
         index += 1;
         update();
@@ -92,7 +125,7 @@ class RegisterPinjolController extends GetxController {
     }
   }
 
-  void goCancel() {
+  void goBack() {
     if (index > 0) {
       index -= 1;
       update();
@@ -145,5 +178,17 @@ class RegisterPinjolController extends GetxController {
     final response = await network.getVillage(districtId);
     dataVillage.value = response;
     listVillage.addAll(dataVillage.map((data) => data.name!).toList());
+  }
+
+  void getKTPImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? ktp = await picker.pickImage(source: ImageSource.gallery);
+    ktpImage.value = ktp;
+  }
+
+  void getSelfieImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? selfie = await picker.pickImage(source: ImageSource.gallery);
+    selfieImage.value = selfie;
   }
 }

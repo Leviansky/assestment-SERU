@@ -597,7 +597,7 @@ class _RegisterStep1State extends State<RegisterStep1> {
               ),
             ),
             onPressed: () {
-              controller.goContinue();
+              controller.goFoto();
             },
             child: const Text(
               'NEXT',
