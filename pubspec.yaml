@@ -31,7 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
-  flutter_wizard: ^2.0.5
   dropdown_button2: ^2.3.9
   dio: ^5.4.0
   dashed_line: ^0.1.0+3
